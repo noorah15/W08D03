@@ -30,7 +30,7 @@ const register = async (req, res) => {
 const login = (req, res) => {
   const { email, password } = req.body;
 
-  userModel
+  userModelemail
     .findOne({ email })
     .then(async (result) => {
       if (result) {
@@ -74,4 +74,16 @@ const getUsers = (req, res) => {
     });
 };
 
-module.exports = { register, login, getUsers };
+const delUsers = (req, res) => {
+  userModel
+    .find({})
+    .then(async (result) => {
+      let doc = await userModel.update({}, { isDel: true });
+      res.status(200).json(doc);
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+};
+
+module.exports = { register, login, getUsers, delUsers };
