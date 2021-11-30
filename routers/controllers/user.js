@@ -63,4 +63,15 @@ const login = (req, res) => {
     });
 };
 
-module.exports = { register, login };
+const getUsers = (req, res) => {
+  userModel
+    .find({})
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
+
+module.exports = { register, login, getUsers };
