@@ -3,13 +3,13 @@ const userModel = require("./../../db/models/user");
 
 //
 const todos = (req, res) => {
-  const { id } = req.params;
+  const { userId } = req.params;
 
   userModel
-    .find({ _id: id })
+    .find({ _id: userId })
     .then((result) => {
       taskModel
-        .find({ user: id, isDel: false })
+        .find({ user: userId, isDel: false })
         .then((result) => {
           if (result) res.status(200).json(result);
           else res.status(400).json("this user not has any tasks");
@@ -96,6 +96,7 @@ const todoUpdate = (req, res) => {
 //
 const todoDel = (req, res) => {
   const { userId, taskId } = req.body;
+  console.log(userId + " " + taskId);
 
   userModel
     .findById({ _id: userId })

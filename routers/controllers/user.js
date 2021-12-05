@@ -30,7 +30,7 @@ const register = async (req, res) => {
 const login = (req, res) => {
   const { email, password } = req.body;
 
-  userModelemail
+  userModel
     .findOne({ email })
     .then(async (result) => {
       if (result) {
@@ -40,6 +40,7 @@ const login = (req, res) => {
           if (hashedPass) {
             const payload = {
               role: result.role,
+              userId: result._id,
             };
             const options = {
               expiresIn: "60m",

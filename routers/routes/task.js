@@ -7,13 +7,33 @@ const {
   todoDel,
   create,
 } = require("./../controllers/task.js");
+const {
+  adminAuthorization,
+  userAuthorization,
+  userAuthorizationByParams,
+  adminAuthorizationByParams,
+} = require("../middlewares/authorization");
+const authentication = require("../middlewares/authentication");
 const taskRouter = express.Router();
 
-taskRouter.get("/todos/:id", todos);
-taskRouter.get("/todo", todo);
-taskRouter.delete("/todosDel/:id", todosDel);
-taskRouter.put("/todoUpdate", todoUpdate);
-taskRouter.delete("/todoDel", todoDel);
-taskRouter.post("/create", create);
+taskRouter.get(
+  "/todos/:userId",
+  authentication,
+  userAuthorizationByParams,
+  todos
+);
+taskRouter.get("/todo", authentication, userAuthorization, todo);
+taskRouter.delete("/todosDel/:id", authentication, userAuthorization, todosDel);
+taskRouter.put("/todoUpdate", authentication, userAuthorization, todoUpdate);
+taskRouter.delete("/todoDel", authentication, userAuthorization, todoDel);
+taskRouter.post("/create", authentication, userAuthorization, create);
+
+//for admin
+taskRouter.get(
+  "/todosByAdmin/:userId/:id",
+  authentication,
+  adminAuthorizationByParams,
+  todos
+);
 
 module.exports = taskRouter;
