@@ -6,13 +6,11 @@ In this task, it has been created the to-do that enables user to add, update and
 
 ## UML
 
+![UML_W08D03 img](https://github.com/noorah15/W08D03/blob/main/UML_W08D03.png)
+
 ## Entity Relationship Diagram:
 
 ![ERD_W08D03.drawio img](https://github.com/noorah15/W08D03/blob/main/ERD_W08D03.drawio.png)
-
-## UML
-
-![UML_W08D03 img](https://github.com/noorah15/W08D03/blob/main/UML_W08D03.png)
 
 ## How did it work
 
